@@ -1,0 +1,15 @@
+version: "0.0.1"
+networks:
+  persist:
+    driver: bridge
+services:
+  server:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8080"
+    networks:
+      - "persist"
+  mongo:
+    image: "mongo:latest"
+    networks:
+      - "persist"

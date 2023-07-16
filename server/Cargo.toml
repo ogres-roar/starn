@@ -7,7 +7,6 @@ edition = "2021"
 
 [dependencies]
 figment = "0.10.10"
-mongodb = "2.6.0"
 md5 = "0.7.0"
 rocket = {version = "=0.5.0-rc.3", features = ["json"] }
 serde = "1.0.171"

@@ -19,6 +19,27 @@ pattern = "{d(%+)(utc)} [{f}:{L}] {h({l})} {M}:{m}{n}"
 kind = "threshold"
 level = "info"
 
+[appenders.server]
+kind = "rolling_file"
+path = "log/server.log"
+
+[appenders.server.policy]
+[appenders.server.policy.trigger]
+kind = "size"
+limit = "10 mb"
+[appenders.server.policy.roller]
+kind = "fixed_window"
+pattern = '{0}/server.log.{{}}'
+base = 1
+count = 10
+
+[appenders.server.encoder]
+pattern = "{m}{n}"
+
+[[appenders.starn.filters]]
+kind = "threshold"
+level = "info"
+
 [appenders.db]
 kind = "rolling_file"
 path = "log/db.log"
@@ -40,11 +61,20 @@ pattern = "{d(%+)(utc)} [{f}:{L}] {h({l})} {M}:{m}{n}"
 kind = "threshold"
 level = "info"
 
-[root]
+[[appenders.server.filters]]
+kind = "threshold"
 level = "info"
-appenders = [ "starn" , "db"]
 
-[loggers.request]
+[root]
+level = "warn"
+appenders = [ "starn" ]
+
+[loggers.server]
+level = "info"
+appenders = ["server"]
+additive = false
+
+[loggers.starn]
 level = "info"
 appenders = ["starn"]
 additive = false

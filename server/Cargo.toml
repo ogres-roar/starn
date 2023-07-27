@@ -6,8 +6,11 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+anyhow = "1.0.72"
+chrono = "0.4.26"
 figment = "0.10.10"
-log4rs = "1.2.0"
+log = "0.4.19"
+log4rs = { version = "1.2.0", features = ["toml_format"] }
 md5 = "0.7.0"
 rocket = {version = "=0.5.0-rc.3", features = ["json"] }
 serde = "1.0.171"

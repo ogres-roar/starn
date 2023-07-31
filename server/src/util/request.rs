@@ -28,6 +28,6 @@ impl Fairing for Context {
     async fn on_response<'r>(&self, req: &'r Request<'_>, res: &mut Response<'r>) {
         let start = req.local_cache(|| Start(Utc::now()));
         let cost = Utc::now().timestamp_micros() - start.0.timestamp_micros();
-        info!(target:"server", "{} cost[{}] method[{}] uri[{}] client[{:?}] status[{}]", start, cost, req.method(), req.uri(), req.client_ip(), res.status());
+        info!(target:"server", "{} cost[{}] method[{}] uri[{}] uid[{:?}] client[{:?}] status[{}]", start, cost, req.method(), req.uri(), "1", req.client_ip(), res.status());
     }
 }

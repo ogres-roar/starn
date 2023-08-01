@@ -13,6 +13,7 @@ services:
       - "persist"
   mongo:
     image: "mongo:latest"
+    command: [--auth]
     volumes:
       - mongodata:/data/db
     networks:

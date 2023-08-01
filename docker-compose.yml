@@ -2,6 +2,8 @@ version: "0.0.1"
 networks:
   persist:
     driver: bridge
+volumes:
+  mongodata:
 services:
   server:
     build: .
@@ -11,5 +13,7 @@ services:
       - "persist"
   mongo:
     image: "mongo:latest"
+    volumes:
+      - mongodata:/data/db
     networks:
       - "persist"

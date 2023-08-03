@@ -1,3 +1,4 @@
+mod data;
 mod page;
 mod util;
 use figment::providers::{Format, Toml};
@@ -15,6 +16,7 @@ fn rocket() -> _ {
             "/",
             catchers![catcher::default_catcher, catcher::fail_guard],
         )
+        .attach(data::StarnDB::setup())
         .attach(util::request::Context {})
         .mount("/", routes![user::create_user])
 }

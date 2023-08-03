@@ -4,12 +4,15 @@ networks:
     driver: bridge
 volumes:
   mongodata:
+  starnlog:
 services:
   server:
     container_name: server
     build: .
     ports:
       - "127.0.0.1:8000:8080"
+    volumes:
+      - starnlog:/server/log
     networks:
       - "persist"
   mongo:

@@ -11,7 +11,7 @@ mongo --port 20217 -u starn -p starn#website
 ## 创建用户
 
 ```js
-// create root
+// create user
 use admin
 db.createUser({user:"root", pwd:"root#starn",roles:[{role:"root",db:"admin"}]})
 db.createUser({user:"starn", pwd:"starn#website",roles:[{role:"readWrite",db:"starn"}]})

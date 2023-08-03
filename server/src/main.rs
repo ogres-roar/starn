@@ -7,6 +7,7 @@ use rocket::{catchers, launch, routes};
 #[launch]
 fn rocket() -> _ {
     util::log::init_logger();
+
     // rocket 配置
     let figment = rocket::Config::figment().merge(Toml::file("conf/rocket.toml").nested());
     rocket::custom(figment)

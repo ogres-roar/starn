@@ -1,2 +1,6 @@
 [starn]
-url = "mongodb://persist:"
+url = "mongodb://starn:root#starn@mongo:27017/starn?connect=direct"
+min_connections = 0
+max_connections = 200
+idle_timeout = 5
+connect_timeout = 1

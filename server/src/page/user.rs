@@ -22,9 +22,15 @@ pub async fn create_user(user: Json<User>) -> Json<success::Success<User>> {
 #[derive(Deserialize, Serialize, Debug)]
 #[serde(crate = "rocket::serde")]
 #[allow(dead_code)]
-pub struct Users {}
+pub struct Users {
+    users: Vec<User>,
+    has_more: bool,
+}
 
 #[get("/starn/users")]
 pub async fn users(mut db: Connection<StarnDB>) -> Json<success::Success<Users>> {
-    return Json(success::create(Users {}));
+    return Json(success::create(Users {
+        users: vec![],
+        has_more: false,
+    }));
 }

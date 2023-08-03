@@ -1,5 +1,5 @@
 /// 用户 角色 权限
-use super::role::Role;
+use carte::auth::role::Role;
 
 #[derive(Debug)]
 pub struct User {

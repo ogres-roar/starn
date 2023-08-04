@@ -5,7 +5,7 @@
 ```shell
 docker ps
 docker exec -it ${mongo-container-id} /bin/bash
-mongo --port 20217 -u starn -p starn#website
+mongosh "mongodb://starn:statics%40web@mongo:27017/starn"
 ```
 
 ## 创建用户
@@ -14,5 +14,6 @@ mongo --port 20217 -u starn -p starn#website
 // create user
 use admin
 db.createUser({user:"root", pwd:"root#starn",roles:[{role:"root",db:"admin"}]})
-db.createUser({user:"starn", pwd:"starn#website",roles:[{role:"readWrite",db:"starn"}]})
+use starn
+db.createUser({user:"starn", pwd:"statics@web",roles:[{role:"readWrite",db:"starn"}]})
 ```

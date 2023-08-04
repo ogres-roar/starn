@@ -18,5 +18,5 @@ fn rocket() -> _ {
         )
         .attach(data::StarnDB::setup())
         .attach(util::request::Context {})
-        .mount("/", routes![user::create_user])
+        .mount("/", routes![user::create_user, user::users])
 }

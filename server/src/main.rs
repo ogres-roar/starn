@@ -3,6 +3,7 @@ mod page;
 mod util;
 use figment::providers::{Format, Toml};
 use page::{catcher, user};
+use rocket::get;
 use rocket::{catchers, launch, routes};
 
 #[launch]
@@ -18,5 +19,10 @@ fn rocket() -> _ {
         )
         .attach(data::StarnDB::setup())
         .attach(util::request::Context {})
-        .mount("/", routes![user::create_user, user::users])
+        .mount("/", routes![user::create_user, user::users, hello])
+}
+
+#[get("/starn/hello")]
+pub async fn hello() -> String {
+    return "hello world".to_string();
 }

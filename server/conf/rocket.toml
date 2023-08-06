@@ -1,10 +1,10 @@
 [default]
 address = "127.0.0.1"
 port = 8000
-log_level = "off"
+log_level = "debug"
 
 [default.databases.starn]
-url = "mongodb://starn:statics%40web@mongo:27017/starn"
+url = "mongodb://starn:statics%40web@127.0.0.1:27017/starn"
 
 [release]
 address = "0.0.0.0"

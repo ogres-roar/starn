@@ -19,7 +19,10 @@ fn rocket() -> _ {
         )
         .attach(data::StarnDB::setup())
         .attach(util::request::Context {})
-        .mount("/", routes![user::create_user, user::users, hello])
+        .mount(
+            "/",
+            routes![user::create_user, user::get_user, user::get_users, hello],
+        )
 }
 
 #[get("/starn/hello")]

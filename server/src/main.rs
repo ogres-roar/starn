@@ -3,8 +3,11 @@ mod page;
 mod util;
 use figment::providers::{Format, Toml};
 use page::{catcher, user};
-use rocket::get;
-use rocket::{catchers, launch, routes};
+use rocket::{
+    catchers,
+    fs::{relative, FileServer},
+    get, launch, routes,
+};
 
 #[launch]
 fn rocket() -> _ {
@@ -20,12 +23,20 @@ fn rocket() -> _ {
         .attach(data::StarnDB::setup())
         .attach(util::request::Context {})
         .mount(
-            "/",
-            routes![user::create_user, user::get_user, user::get_users, hello],
+            "/starn",
+            routes![
+                user::create_user,
+                user::get_user,
+                user::get_users,
+                user::login,
+                user::logout,
+                hello
+            ],
         )
+        .mount("/website", FileServer::from(relative!("website")))
 }
 
-#[get("/starn/hello")]
+#[get("/hello")]
 pub async fn hello() -> String {
     return "hello world".to_string();
 }

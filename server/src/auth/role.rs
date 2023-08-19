@@ -41,7 +41,7 @@ impl Role {
         };
     }
 
-    pub fn can_read(&self, catalog: &String, page: &String) -> bool {
+    pub fn can_read(&self, catalog: &str, page: &str) -> bool {
         match self.privileges.get(catalog) {
             Some(privilege) => {
                 if privilege.action == Action::NONE {
@@ -58,7 +58,7 @@ impl Role {
         }
     }
 
-    pub fn can_write(&self, catalog: &String, page: &String) -> bool {
+    pub fn can_write(&self, catalog: &str, page: &str) -> bool {
         match self.privileges.get(catalog) {
             Some(privilege) => {
                 if privilege.action != Action::WRITE {

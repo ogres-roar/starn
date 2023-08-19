@@ -9,7 +9,7 @@ pub struct User {
     role: Role,
 }
 
-pub fn salt(passwd: &String) -> String {
+pub fn salt(passwd: &str) -> String {
     return format!(
         "{:x}",
         md5::compute(String::from("pass-") + passwd + "-world")

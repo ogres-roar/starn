@@ -6,7 +6,7 @@ use page::{catcher, user};
 use rocket::{
     catchers,
     fs::{relative, FileServer},
-    get, launch, routes,
+    launch, routes,
 };
 
 #[launch]
@@ -25,18 +25,13 @@ fn rocket() -> _ {
         .mount(
             "/starn",
             routes![
-                user::create_user,
+                user::create,
+                user::delete,
                 user::get_user,
                 user::get_users,
                 user::login,
                 user::logout,
-                hello
             ],
         )
-        .mount("/website", FileServer::from(relative!("website")))
-}
-
-#[get("/hello")]
-pub async fn hello() -> String {
-    return "hello world".to_string();
+        .mount("/", FileServer::from(relative!("website")))
 }

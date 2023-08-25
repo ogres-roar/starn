@@ -16,6 +16,7 @@ use admin
 db.createUser({user:"root", pwd:"root#starn",roles:[{role:"root",db:"admin"}]})
 use starn
 db.createUser({user:"starn", pwd:"statics@web",roles:[{role:"readWrite",db:"starn"}]})
+db.user.createIndex({uid:1})
 ```
 
 ## 测试环境启动 mongo

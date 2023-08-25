@@ -6,10 +6,11 @@ use rocket::serde::{Deserialize, Serialize};
 pub struct Resp<T> {
     errno: u32,
     msg: String,
-    data: T,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    data: Option<T>,
 }
 
-pub fn create<T>(no: u32, msg: String, data: T) -> Resp<T> {
+pub fn create<T>(no: u32, msg: String, data: Option<T>) -> Resp<T> {
     return Resp {
         errno: no,
         msg: msg,
